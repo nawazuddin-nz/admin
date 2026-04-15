@@ -1,0 +1,373 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Rangotsava Events</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<style>
+/* GLOBAL FIX */
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  font-family: 'Poppins', sans-serif;
+  background: #f4f6fb;
+}
+
+h1 {
+  text-align: center;
+  padding: 15px;
+}
+
+/* DATE BAR */
+.date-bar {
+  display: flex;
+  justify-content: center;
+  gap: 15px;
+  padding: 10px;
+  flex-wrap: wrap;
+}
+
+.date {
+  width: 70px;
+  height: 70px;
+  border-radius: 50%;
+  background: white;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+  border: 1px solid #ddd;
+  transition: 0.3s;
+}
+
+.date:hover {
+  transform: scale(1.05);
+}
+
+.date.active {
+  background: #e11d48;
+  color: white;
+}
+
+.date span { font-size: 12px; }
+.date b { font-size: 18px; }
+
+/* TIMELINE */
+.timeline {
+  position: relative;
+  max-width: 900px;
+  margin: auto;
+  padding: 20px 0;
+}
+
+/* CENTER LINE */
+.timeline::after {
+  content: '';
+  position: absolute;
+  width: 2px;
+  background: #ccc;
+  top: 0;
+  bottom: 0;
+  left: 50%;
+  transform: translateX(-50%);
+}
+
+/* EVENTS */
+.event {
+  position: relative;
+  width: 50%;
+  padding: 20px;
+}
+
+/* LEFT SIDE */
+.event.left {
+  left: 0;
+  padding-right: 50px; /* space from line */
+  text-align: right;
+}
+
+/* RIGHT SIDE */
+.event.right {
+  left: 50%;
+  padding-left: 50px; /* space from line */
+}
+
+/* CARD */
+.card {
+  background: white;
+  padding: 15px;
+  border-radius: 12px;
+  cursor: pointer;
+  transition: 0.3s;
+  box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+  margin: 0 10px;
+}
+
+.card:hover {
+  transform: scale(1.05);
+}
+
+/* TEXT */
+.title {
+  font-weight: bold;
+  font-size: 18px;
+}
+
+.sub {
+  font-size: 14px;
+  color: #666;
+}
+
+/* DOT */
+.event::after {
+  content: '';
+  position: absolute;
+  width: 12px;
+  height: 12px;
+  background: #e11d48;
+  border-radius: 50%;
+  top: 25px;
+  z-index: 1;
+}
+
+/* DOT POSITION */
+.event.left::after {
+  right: -6px;
+}
+
+.event.right::after {
+  left: -6px;
+}
+
+/* MOBILE VIEW */
+@media(max-width: 768px) {
+
+  .timeline::after {
+    left: 10px;
+  }
+
+  .event {
+    width: 100%;
+    padding-left: 40px;
+    padding-right: 20px;
+  }
+
+  .event.left,
+  .event.right {
+    left: 0;
+    text-align: center;
+  }
+
+  .event::after {
+    left: 4px;
+  }
+}
+</style>
+</head>
+
+<body>
+
+<h1>🎉 Rangotsava Events Admin Access</h1>
+
+<!-- DATE SELECTOR -->
+<div class="date-bar">
+  <div class="date" data-date="20"><span>Apr</span><b>20</b></div>
+  <div class="date active" data-date="21"><span>Apr</span><b>21</b></div>
+  <div class="date" data-date="22"><span>Apr</span><b>22</b></div>
+  <div class="date" data-date="23"><span>Apr</span><b>23</b></div>
+  <div class="date" data-date="24"><span>Apr</span><b>24</b></div>
+  <div class="date" data-date="25"><span>Apr</span><b>25</b></div>
+</div>
+
+<!-- TIMELINE -->
+<div class="timeline">
+
+<!-- APR 20 -->
+<div class="event left" data-date="20">
+  <div class="card" onclick="go('https://docs.google.com/spreadsheets/d/16KqhhImnobea0LRdbxLn2sR5HLhLILy7NdtCiiKE3PM')">
+    <div class="title">Box Cricket</div>
+    <div class="sub">April 20</div>
+  </div>
+</div>
+
+<div class="event right" data-date="20">
+  <div class="card" onclick="go('https://docs.google.com/spreadsheets/d/1seeYnPb7M_KSxtlAynaF6lGgt4-P5dtzb1GYqiBKSbA')">
+    <div class="title">Free Fire</div>
+    <div class="sub">April 20</div>
+  </div>
+</div>
+
+<div class="event left" data-date="20">
+  <div class="card" onclick="go('https://docs.google.com/spreadsheets/d/1IkZK3oloEpom4gCb8DPVH9q7RUJ0Du7hIgRGTM_uPBY')">
+    <div class="title">Rangoli</div>
+    <div class="sub">April 20</div>
+  </div>
+</div>
+
+<!-- APR 21 -->
+<div class="event right" data-date="21">
+  <div class="card" onclick="go('https://docs.google.com/spreadsheets/d/1rEFlxRKNtF1EVP_vTgLA-BEUWdwzxRaVWHY5G4rsRuQ')">
+    <div class="title">Essay</div>
+    <div class="sub">April 21</div>
+  </div>
+</div>
+
+<div class="event left" data-date="21">
+  <div class="card" onclick="go('https://docs.google.com/spreadsheets/d/1Xdi4luF_hn27eBzeK8ur7wsOUlLckmTboS1ZZSRSlc0')">
+    <div class="title">Mehendi</div>
+    <div class="sub">April 21</div>
+  </div>
+</div>
+
+<div class="event right" data-date="21">
+  <div class="card" onclick="go('https://docs.google.com/spreadsheets/d/1mfB8jRO8ZB5MZvGiPUm-xokq13--V8ESAmWc6aWdHSs')">
+    <div class="title">Treasure Hunt</div>
+    <div class="sub">April 21</div>
+  </div>
+</div>
+
+<div class="event left" data-date="21">
+  <div class="card" onclick="go('https://docs.google.com/spreadsheets/d/1Yx0PPShr3Z8WoX1_OiYsfT8JYnyvPFcmRviPVKj8N7Q')">
+    <div class="title">Best Out of Scrap</div>
+    <div class="sub">April 21</div>
+  </div>
+</div>
+
+<!-- APR 22 -->
+<div class="event right" data-date="22">
+  <div class="card" onclick="go('https://docs.google.com/spreadsheets/d/1Xril7nFol_tklZjP_k5prYntvFp9PMRCbOihL_cgNoc')">
+    <div class="title">Coding</div>
+    <div class="sub">April 22</div>
+  </div>
+</div>
+
+<div class="event left" data-date="22">
+  <div class="card" onclick="go('https://docs.google.com/spreadsheets/d/1HyMcbdLct1Wtn65j97l6zpglcd3xHNlBSysB7MHv3U0')">
+    <div class="title">Cooking</div>
+    <div class="sub">April 22</div>
+  </div>
+</div>
+
+<div class="event right" data-date="22">
+  <div class="card" onclick="go('https://docs.google.com/spreadsheets/d/1rrda7-aOBzshmhn6n6OwTLHGLiHOx4fy4Xon7MwV33s')">
+    <div class="title">Drawing</div>
+    <div class="sub">April 22</div>
+  </div>
+</div>
+
+<div class="event left" data-date="22">
+  <div class="card" onclick="go('https://docs.google.com/spreadsheets/d/1Xdi4luF_hn27eBzeK8ur7wsOUlLckmTboS1ZZSRSlc0')">
+    <div class="title">Reels</div>
+    <div class="sub">April 22</div>
+  </div>
+</div>
+
+<!-- APR 23 -->
+<div class="event right" data-date="23">
+  <div class="card" onclick="go('https://docs.google.com/spreadsheets/d/1mJNVUsjYlsLSFYqcNCSq5S6fJ0IyYdPkHZFzXnGw7eA')">
+    <div class="title">Photography</div>
+    <div class="sub">April 23</div>
+  </div>
+</div>
+
+<div class="event left" data-date="23">
+  <div class="card" onclick="go('https://docs.google.com/spreadsheets/d/1Nx_PACjlQ6Q1OKZ4mzKSqw2FRGddZoP5wAKPoSw8uts')">
+    <div class="title">Quiz</div>
+    <div class="sub">April 23</div>
+  </div>
+</div>
+
+<div class="event right" data-date="23">
+  <div class="card" onclick="go('https://docs.google.com/spreadsheets/d/1R6lLdNYEHSqCSc7qEHnUhGiWhhAat32-dHpg81aSabs')">
+    <div class="title">Pot Painting</div>
+    <div class="sub">April 23</div>
+  </div>
+</div>
+
+<div class="event left" data-date="23">
+  <div class="card" onclick="go('https://docs.google.com/spreadsheets/d/1LyKq6X7pZoDzP4LILY2TwuJc2-r91A79VNDKOypHngk')">
+    <div class="title">Debate</div>
+    <div class="sub">April 23</div>
+  </div>
+</div>
+
+<div class="event right" data-date="23">
+  <div class="card" onclick="go('https://docs.google.com/spreadsheets/d/1iabJsEqlVzicm771C_dlHvKnll_PHgdfY4NtXwLTMoI')">
+    <div class="title">Face Painting</div>
+    <div class="sub">April 23</div>
+  </div>
+</div>
+
+<!-- APR 24 -->
+<div class="event left" data-date="24">
+  <div class="card" onclick="go('https://docs.google.com/spreadsheets/d/1m4uWYB8olbLxfuQM_SMtXL8mbXyauvMo27pmwo7Zvsg')">
+    <div class="title">Paper Presentation</div>
+    <div class="sub">April 24</div>
+  </div>
+</div>
+
+<div class="event right" data-date="24">
+  <div class="card" onclick="go('https://docs.google.com/spreadsheets/d/1Tuh83t9DYVOnBtzogq8eGgYHzx89uR_Uagukhl3S_S4')">
+    <div class="title">Poster Design</div>
+    <div class="sub">April 24</div>
+  </div>
+</div>
+
+<div class="event left" data-date="24">
+  <div class="card" onclick="go('https://docs.google.com/spreadsheets/d/1E2p8uJrna6MRYi5yFfiMDHuE491GH9k7IUKfolWnGds')">
+    <div class="title">Speech</div>
+    <div class="sub">April 24</div>
+  </div>
+</div>
+
+<div class="event right" data-date="24">
+  <div class="card" onclick="go('https://docs.google.com/spreadsheets/d/1xYfASU8zqyCPoWnRUamPlKvGwNJ8Vk3DcvgpbXJ4Zys')">
+    <div class="title">Singing</div>
+    <div class="sub">April 24</div>
+  </div>
+</div>
+
+<!-- APR 25 -->
+<div class="event left" data-date="25">
+  <div class="card" onclick="go('https://docs.google.com/spreadsheets/d/1xjZ-noDKlYszPB0SwO_I8reWvqJkn4XGu2cift6o_bg')">
+    <div class="title">Ramp Walk</div>
+    <div class="sub">April 25</div>
+  </div>
+</div>
+
+</div>
+
+<script>
+function go(link){
+  window.open(link, "_blank");
+}
+
+const dates = document.querySelectorAll(".date");
+const events = document.querySelectorAll(".event");
+
+dates.forEach(btn => {
+  btn.addEventListener("click", () => {
+    dates.forEach(d => d.classList.remove("active"));
+    btn.classList.add("active");
+
+    const selected = btn.getAttribute("data-date");
+
+    events.forEach(ev => {
+      ev.style.display = (ev.getAttribute("data-date") === selected) ? "block" : "none";
+    });
+  });
+});
+
+// DEFAULT LOAD
+window.onload = () => {
+  document.querySelector('.date.active').click();
+};
+</script>
+
+</body>
+</html>
